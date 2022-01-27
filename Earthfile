@@ -9,22 +9,19 @@ RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositori
   && apk add --no-cache nss \
   && rm -rf /var/cache/apk/* \
 
-# TODO: update this ARG accordingly
-ARG IMAGE_NAME="jianbo/jmeter"
-ARG TEMP_DIR="/tmp/dependencies"
-
-# TODO: add versions here
-ARG JMETER_VERSION_LIST="5.4.3 5.4.2"
 WORKDIR /jmeter
 
 # build jmeter image with given JMETER_VERSION argument
 build:
+  # TODO: update this ARG accordingly
+  ARG IMAGE_NAME="jianbo/jmeter"
+  ARG TEMP_DIR="/tmp/dependencies"
   # In order to leverage the cache, moved those unchanging directions ahead
   ARG TZ="Europe/Amsterdam"
   ENV TZ ${TZ}
   # Entrypoint has same signature as "jmeter" command
   COPY entrypoint.sh /
-
+  
   # TODO: update this 
   ENV CUSTOM_JAR_URL https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.2.1.tgz.asc
   # download the customer jar file
@@ -48,11 +45,12 @@ build:
   ENV PATH $PATH:$JMETER_BIN
   ENTRYPOINT ["/entrypoint.sh"]
   # Save the image
-  SAVE IMAGE --push jianbo/jmeter:${JMETER_VERSION}
+  SAVE IMAGE --push ${IMAGE_NAME}:${JMETER_VERSION}
 
 # Build jmeter images with given JMETER_VERSION_LIST, calls 'build' target for each version
 buildAll:
-  # a list of jmeter versions 
+  # TODO: add versions here
+  ARG JMETER_VERSION_LIST="5.2 5.2.1 5.3 5.4 5.4.1 5.4.2 5.4.3"
   FOR v IN ${JMETER_VERSION_LIST}
     BUILD +build --JMETER_VERSION=${v}
   END
