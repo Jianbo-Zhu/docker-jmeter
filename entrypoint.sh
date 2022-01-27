@@ -6,12 +6,12 @@
 #
 
 # Install jmeter plugins available on /plugins volume
-if [ -d /plugins ]
-then
-    for plugin in /plugins/*.jar; do
-        cp $plugin $(pwd)/lib/ext
-    done;
-fi
+# if [ -d /plugins ]
+# then
+#     for plugin in /plugins/*.jar; do
+#         cp $plugin $(pwd)/lib/ext
+#     done;
+# fi
 
 # Execute JMeter command
 set -e
@@ -27,10 +27,17 @@ echo "jmeter args=$@"
 
 # Keep entrypoint simple: we must pass the standard JMeter arguments
 EXTRA_ARGS=-Dlog4j2.formatMsgNoLookups=true
-echo "jmeter ALL ARGS=${EXTRA_ARGS} $@"
-jmeter ${EXTRA_ARGS} $@
+COMMAND=jmeter
+if (($# -gt 0)) && (("$1" == "server"))
+then
+    COMMAND=jmeter-server
+    shift
+fi
 
-echo "END Running Jmeter on `date`"
+echo "${COMMAND} ALL ARGS=${EXTRA_ARGS} $@"
+${COMMAND} ${EXTRA_ARGS} $@
+
+echo "END Running ${COMMAND} on `date`"
 
 #     -n \
 #    -t "/tests/${TEST_DIR}/${TEST_PLAN}.jmx" \
