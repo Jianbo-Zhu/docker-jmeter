@@ -18,3 +18,13 @@ It will build images for all listed jmeter versions and push to docker hub.
 docker login -u {username}  # replace username with docker hub account, and input the password
 earthly --push +buildAll
 ```
+## How to run jmeter
+The image support `client` and `server` mode, by default it start with `client` mode, if you want to start with `server` mode, pass *server* as the first parameter to the command. e.g.
+```
+docker run -d --name jmeter-server jianbo/jmeter:5.4.2 server -n 
+```
+
+and to start with `client` mode:
+```
+docker run -d --name jmeter-client jianbo/jmeter:5.4.2 -n -t test.jmx -R server1,server2,…
+```

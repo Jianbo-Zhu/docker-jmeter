@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <com.agiletestware.goliath.jmeter.SplunkListenerConfigTestElement guiclass="com.agiletestware.goliath.jmeter.SplunkListenerConfigGui" testclass="com.agiletestware.goliath.jmeter.SplunkListenerConfigTestElement" testname="Splunk Events Listener Config" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="SPLUNK_LISTENER_CONFIG_VARIABLE_splunk_config" elementType="Argument">
+            <stringProp name="Argument.name">SPLUNK_LISTENER_CONFIG_VARIABLE_splunk_config</stringProp>
+            <stringProp name="Argument.value">{&quot;configVariable&quot;:&quot;splunk_config&quot;,&quot;splunkUrl&quot;:&quot;https://splk.perfmeter.io/&quot;,&quot;splunkWebPort&quot;:&quot;8000&quot;,&quot;splunkMgmtPort&quot;:&quot;8089&quot;,&quot;splunkHecPort&quot;:&quot;8088&quot;,&quot;hecToken&quot;:&quot;89c59998-6380-4aa1-982f-03118fecfc7f&quot;,&quot;index&quot;:&quot;jmeter&quot;,&quot;sourceType&quot;:&quot;jmeter&quot;,&quot;indexType&quot;:0,&quot;maxBatchSize&quot;:&quot;1&quot;,&quot;samplerLogOption&quot;:&quot;ALWAYS&quot;,&quot;collectJmeterServerLogs&quot;:1}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+        <stringProp name="config.variable">splunk_config</stringProp>
+        <stringProp name="splunk.url">https://splk.perfmeter.io/</stringProp>
+        <stringProp name="splunk.web.port">8000</stringProp>
+        <stringProp name="splunk.mgmt.port">8089</stringProp>
+        <stringProp name="splunk.hec.port">8088</stringProp>
+        <stringProp name="hec.token">89c59998-6380-4aa1-982f-03118fecfc7f</stringProp>
+        <stringProp name="index">jmeter</stringProp>
+        <stringProp name="source.type">jmeter</stringProp>
+        <intProp name="index.type">0</intProp>
+        <stringProp name="max.batch.size">1</stringProp>
+        <stringProp name="sampler.log.option">ALWAYS</stringProp>
+        <intProp name="collect.jmeter.server.logs">1</intProp>
+      </com.agiletestware.goliath.jmeter.SplunkListenerConfigTestElement>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Google" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">20</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="google - HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">google.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Yahoo" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">20</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="yahoo - HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">yahoo.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <com.agiletestware.goliath.jmeter.SplunkListenerTestElement guiclass="com.agiletestware.goliath.jmeter.SplunkListenerGui" testclass="com.agiletestware.goliath.jmeter.SplunkListenerTestElement" testname="Splunk Events Listener" enabled="true">
+        <elementProp name="arguments" elementType="Arguments">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="test.element.name" elementType="Argument">
+              <stringProp name="Argument.name">test.element.name</stringProp>
+              <stringProp name="Argument.value">Splunk Events Listener</stringProp>
+            </elementProp>
+            <elementProp name="config.variable.reference" elementType="Argument">
+              <stringProp name="Argument.name">config.variable.reference</stringProp>
+              <stringProp name="Argument.value">splunk_config</stringProp>
+            </elementProp>
+            <elementProp name="jmeter.metadata" elementType="Argument">
+              <stringProp name="Argument.name">jmeter.metadata</stringProp>
+              <stringProp name="Argument.value">{&quot;test&quot;:&quot;kubernetes&quot;,&quot;author&quot;:&quot;araza&quot;,&quot;software&quot;:&quot;perfmeter&quot;,&quot;version&quot;:&quot;1.0.0&quot;}</stringProp>
+            </elementProp>
+            <elementProp name="jmeter.performance.metrics" elementType="Argument">
+              <stringProp name="Argument.name">jmeter.performance.metrics</stringProp>
+              <stringProp name="Argument.value">AllThreads;AssertionResults;BodySizeInBytes;ConnectTime;ContentType;DataEncoding;DataType;ElapsedTime;ErrorCount;FailureMessage;GrpThreads;HeadersSizeInBytes;IdleTime;InjectorHostname;Latency;LoadTime;RequestBody;RequestHeaders;ResponseBody;ResponseCode;ResponseHeaders;ResponseMessage;SampleCount;SampleEndTime;SampleLabel;SampleStartTime;SentBytes;SizeInBytes;Success;TestStartTime;ThreadGroup;ThreadName;Timestamp;URL</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="classname">com.agiletestware.goliath.jmeter.backendlistener.SplunkBackendListenerClient</stringProp>
+      </com.agiletestware.goliath.jmeter.SplunkListenerTestElement>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

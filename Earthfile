@@ -40,10 +40,13 @@ build:
     && tar -xzf ${TEMP_DIR}/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  \
     && cp ${TEMP_DIR}/customer.jar ${JMETER_HOME}/lib/ext/
   RUN rm -rf ${TEMP_DIR}
-
+  COPY boot/plugins/* ${JMETER_HOME}/lib/ext/
+  COPY boot/data ${JMETER_HOME}/
+  COPY boot/scripts ${JMETER_HOME}/
+  COPY boot/license ${JMETER_HOME}/
   # Set global PATH such that "jmeter" command is found
   ENV PATH $PATH:$JMETER_BIN
-
+  ENTRYPOINT ["/entrypoint.sh"]
   # Save the image
   SAVE IMAGE --push ${IMAGE_NAME}:${JMETER_VERSION}
 
