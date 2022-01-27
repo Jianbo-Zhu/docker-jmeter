@@ -48,7 +48,7 @@ build:
   ENV PATH $PATH:$JMETER_BIN
   ENTRYPOINT ["/entrypoint.sh"]
   # Save the image
-  SAVE IMAGE --push ${IMAGE_NAME}:${JMETER_VERSION}
+  SAVE IMAGE --push jianbo/jmeter:${JMETER_VERSION}
 
 # Build jmeter images with given JMETER_VERSION_LIST, calls 'build' target for each version
 buildAll:
