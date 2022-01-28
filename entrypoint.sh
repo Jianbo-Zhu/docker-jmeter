@@ -26,7 +26,7 @@ echo "JVM_ARGS=${JVM_ARGS}"
 echo "jmeter args=$@"
 
 # Keep entrypoint simple: we must pass the standard JMeter arguments
-EXTRA_ARGS="-Dlog4j2.formatMsgNoLookups=true -Dserver.rmi.ssl.disable=true“
+EXTRA_ARGS="-Dlog4j2.formatMsgNoLookups=true -Dserver.rmi.ssl.disable=true"
 COMMAND=jmeter
 if [[ $# -gt 1 && "$1" == "server" ]]
 then
