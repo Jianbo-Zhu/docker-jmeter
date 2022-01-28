@@ -31,6 +31,7 @@ COMMAND=jmeter
 if (($# -gt 0)) && (("$1" == "server"))
 then
     COMMAND=jmeter-server
+    EXTRA_ARGS="$EXTRA_ARGS -Dserver.rmi.ssl.disable=true"
     shift
 fi
 

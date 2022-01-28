@@ -1,7 +1,8 @@
 VERSION 0.6
 FROM alpine:3.12
-RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
-  && apk update \
+RUN  \
+  # sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+  apk update \
   && apk upgrade \
   && apk add ca-certificates \
   && update-ca-certificates \
@@ -14,7 +15,7 @@ WORKDIR /jmeter
 # build jmeter image with given JMETER_VERSION argument
 build:
   # TODO: update this ARG accordingly
-  ARG IMAGE_NAME="jianbo/jmeter"
+  ARG IMAGE_NAME="railflow/jmeter"
   ARG TEMP_DIR="/tmp/dependencies"
   # In order to leverage the cache, moved those unchanging directions ahead
   ARG TZ="Europe/Amsterdam"
@@ -43,6 +44,7 @@ build:
   COPY boot/license ${JMETER_HOME}/
   # Set global PATH such that "jmeter" command is found
   ENV PATH $PATH:$JMETER_BIN
+  EXPOSE 1099
   ENTRYPOINT ["/entrypoint.sh"]
   # Save the image
   SAVE IMAGE --push ${IMAGE_NAME}:${JMETER_VERSION}
