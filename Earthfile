@@ -39,9 +39,9 @@ build:
     && cp ${TEMP_DIR}/customer.jar ${JMETER_HOME}/lib/ext/
   RUN rm -rf ${TEMP_DIR}
   COPY boot/plugins/* ${JMETER_HOME}/lib/ext/
-  COPY boot/data ${JMETER_HOME}/
-  COPY boot/scripts ${JMETER_HOME}/
-  COPY boot/license ${JMETER_HOME}/
+  COPY --dir boot/data ${JMETER_HOME}/
+  COPY --dir boot/scripts ${JMETER_HOME}/
+  COPY --dir boot/license ${JMETER_HOME}/
   # Set global PATH such that "jmeter" command is found
   ENV PATH $PATH:$JMETER_BIN
   EXPOSE 1099
