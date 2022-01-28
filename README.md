@@ -21,10 +21,10 @@ earthly --push +buildAll
 ## How to run jmeter
 The image support `client` and `server` mode, by default it start with `client` mode, if you want to start with `server` mode, pass *server* as the first parameter to the command. e.g.
 ```
-docker run -d --name jmeter-server jianbo/jmeter:5.4.2 server -n 
+docker run -d --name jmeter-server -p 1099:1099 railflow/jmeter:5.4.2 server -n 
 ```
 
 and to start with `client` mode:
 ```
-docker run -d --name jmeter-client jianbo/jmeter:5.4.2 -n -t test.jmx -R server1,server2,…
+docker run -d --name jmeter-client railflow/jmeter:5.4.2 -n -t test.jmx -R server1,server2,…
 ```
