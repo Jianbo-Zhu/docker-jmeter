@@ -5,24 +5,22 @@
 # This script expects the standdard JMeter command parameters.
 #
 
-# Install jmeter plugins available on /plugins volume
-# if [ -d /plugins ]
-# then
-#     for plugin in /plugins/*.jar; do
-#         cp $plugin $(pwd)/lib/ext
-#     done;
-# fi
-
 # Execute JMeter command
 set -e
 freeMem=`awk '/MemFree/ { print int($2/1024) }' /proc/meminfo`
 s=$(($freeMem/10*8))
 x=$(($freeMem/10*8))
 n=$(($freeMem/10*2))
-export JVM_ARGS="-Xmn${n}m -Xms${s}m -Xmx${x}m"
-
+# export JVM_ARGS="-Xmn${n}m -Xms${s}m -Xmx${x}m"
+export JAVA_HOME=/usr/lib/jvm/default-jvm
+export JMETER_HOME=/opt/apache-jmeter-5.4.3
+export JRE_HOME=/usr/lib/jvm/default-jvm/jre
 echo "START Running Jmeter on `date`"
-echo "JVM_ARGS=${JVM_ARGS}"
+# echo "JVM_ARGS=${JVM_ARGS}"
+echo "JAVA_HOME=/usr/lib/jvm/default-jvm"
+echo "JMETER_HOME=/opt/apache-jmeter-5.4.3"
+echo "JRE_HOME=/usr/lib/jvm/default-jvm/jre"
+
 echo "jmeter args=$@"
 
 # Keep entrypoint simple: we must pass the standard JMeter arguments

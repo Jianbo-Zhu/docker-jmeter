@@ -36,7 +36,8 @@ build:
   RUN curl -L --silent ${JMETER_DOWNLOAD_URL} >  ${TEMP_DIR}/apache-jmeter-${JMETER_VERSION}.tgz  \
     && mkdir -p /opt  \
     && tar -xzf ${TEMP_DIR}/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  \
-    && cp ${TEMP_DIR}/customer.jar ${JMETER_HOME}/lib/ext/
+    && cp ${TEMP_DIR}/customer.jar ${JMETER_HOME}/lib/ext/ \
+    && ln -s ${JMETER_HOME} /jmeter
   RUN rm -rf ${TEMP_DIR}
   COPY boot/plugins/* ${JMETER_HOME}/lib/ext/
   COPY --dir boot/data ${JMETER_HOME}/
